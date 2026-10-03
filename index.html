@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#087ff5">
+  <meta name="description" content="RazzPay - Top Up Game, Pulsa, Paket Data dan layanan digital.">
+  <title>RazzPay — Top Up Game & Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <img src="assets/logo.png" alt="RazzPay" onerror="this.style.display='none'">
+      <span><b>Razz<span>Pay</span></b><small>Top Up & Digital</small></span>
+    </a>
+    <div class="nav-actions">
+      <button class="ghost" onclick="openSearch()">⌕ <span>Cari</span></button>
+      <button class="login" onclick="toast('Fitur login dapat dihubungkan ke backend nanti.')">Masuk</button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero wrap">
+  <div class="hero-copy">
+    <div class="pill">⚡ TOP UP CEPAT & PRAKTIS</div>
+    <h1>Semua kebutuhan<br><strong>digital kamu.</strong></h1>
+    <p>Top up game, pulsa, paket data, voucher dan layanan digital dalam satu tempat.</p>
+    <button class="cta" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})">Mulai Belanja →</button>
+  </div>
+  <div class="hero-art">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="hero-logo"><img src="assets/logo.png" alt=""><b>RazzPay</b><small>FAST • SAFE • SIMPLE</small></div>
+  </div>
+</section>
+
+<section class="quick wrap">
+  <button onclick="setCategory('game')"><i>🎮</i><span>Top Up Game</span></button>
+  <button onclick="setCategory('pulsa')"><i>📱</i><span>Pulsa</span></button>
+  <button onclick="setCategory('data')"><i>📶</i><span>Paket Data</span></button>
+  <button onclick="setCategory('voucher')"><i>🎟️</i><span>Voucher</span></button>
+  <button onclick="setCategory('wallet')"><i>💳</i><span>E-Wallet</span></button>
+  <button onclick="setCategory('all')"><i>▦</i><span>Lainnya</span></button>
+</section>
+
+<section class="wrap section" id="products">
+  <div class="section-head">
+    <div><small>PRODUK</small><h2>Top Up Game</h2></div>
+    <div class="searchbox"><input id="search" placeholder="Cari game..." oninput="renderGames()"><span>⌕</span></div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="game-grid" id="gameGrid"></div>
+</section>
+
+<section class="wrap section service-section">
+  <div class="section-head"><div><small>LAYANAN DIGITAL</small><h2>Layanan lainnya</h2></div></div>
+  <div class="service-grid">
+    <button onclick="openGeneric('Pulsa')">📱<b>Pulsa</b><small>Telkomsel, XL, AXIS, IM3, Tri, Smartfren</small></button>
+    <button onclick="openGeneric('Paket Data')">📶<b>Paket Data</b><small>Berbagai operator Indonesia</small></button>
+    <button onclick="openGeneric('E-Wallet')">💳<b>E-Wallet</b><small>DANA, GoPay, OVO, ShopeePay</small></button>
+    <button onclick="openGeneric('Voucher')">🎟️<b>Voucher Digital</b><small>Voucher game & hiburan</small></button>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap"><b>RazzPay</b><p>Top Up Game & Digital Service</p><small>© <span id="year"></span> RazzPay. Semua hak dilindungi.</small></div>
+</footer>
+
+<div class="modal" id="orderModal">
+  <div class="modal-card">
+    <button class="x" onclick="closeModal()">×</button>
+    <div class="modal-head"><div id="mIcon" class="micon">🎮</div><div><small>ORDER</small><h2 id="mTitle">Game</h2></div></div>
+    <label>ID / Nomor Tujuan<input id="target" placeholder="Masukkan ID game / nomor"></label>
+    <label>Server / Zone ID <input id="server" placeholder="Opsional"></label>
+    <label>Pilih Nominal<select id="denom" onchange="updateTotal()"></select></label>
+    <div class="total"><span>Total</span><b id="total">Rp 0</b></div>
+    <button class="cta full" onclick="sendWhatsApp()">Pesan via WhatsApp</button>
+    <small class="note">Pesanan versi ini diproses manual melalui WhatsApp. API otomatis bisa ditambahkan kemudian.</small>
+  </div>
+</div>
+
+<div class="modal" id="searchModal">
+  <div class="modal-card">
+    <button class="x" onclick="document.getElementById('searchModal').classList.remove('show')">×</button>
+    <h2>Cari produk</h2>
+    <input class="biginput" id="globalSearch" placeholder="Contoh: Free Fire, ML, PUBG..." oninput="globalFind()">
+    <div id="globalResults"></div>
+  </div>
+</div>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
